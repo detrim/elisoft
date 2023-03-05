@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'dashboard')
+@section('title', 'Dashboard')
 @extends('layout.sidebar')
 @section('content')
     <div class="content-wrapper">
