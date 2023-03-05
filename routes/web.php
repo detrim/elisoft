@@ -17,10 +17,11 @@ use App\Http\Controllers\CrudController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+route::get('/', [AuthController::class, 'login']);
 route::get('/in', [AuthController::class, 'login']);
 route::get('/login', [AuthController::class, 'login'])->name('login')->middleware(['guest']);
 route::get('/log', [AuthController::class, 'login']);
