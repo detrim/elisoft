@@ -8,15 +8,27 @@
             <a href="{{ url('login') }}" class="h1"><b>Sign In</b></a>
         </div>
         <div class="card-body">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             @endif
             <form action="{{ url('proseslogin') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="email"name="email" class="form-control " required placeholder="Email anda">
+                    <input type="email"name="email" class="form-control @error('email') is-invalid @enderror" required
+                        placeholder="Email anda">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -33,6 +45,9 @@
                         </div>
                     </div>
                 </div>
+                @error('email')
+                    <small class="text-danger ">{{ $message }}</small>
+                @enderror
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">

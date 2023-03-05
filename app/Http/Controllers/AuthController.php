@@ -89,7 +89,7 @@ class AuthController extends Controller
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
-        return redirect('/log')->with('error', 'Data auth berhasil diupdate');
+        return redirect('/log')->with('status', 'Akun berhasil di buat');
     }
     public function logout(Request $request)
     {
@@ -103,6 +103,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        return view('auth.login');
+        return redirect('login')->with('error', 'Anda telah logout');
     }
 }

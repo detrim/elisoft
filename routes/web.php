@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 route::get('/in', [AuthController::class, 'login']);
 route::get('/login', [AuthController::class, 'login'])->name('login')->middleware(['guest']);
-route::get('/log', [AuthController::class, 'login'])->name('login');
+route::get('/log', [AuthController::class, 'login']);
 route::get('/out', [AuthController::class, 'logout']);
 Route::get('/reg', function () {
     return view('auth/register');
@@ -37,6 +37,13 @@ Route::group(['middleware' => ['auth','CheckLevel:admin']], function () {
         route::get('/dashboard', [DashboardController::class, 'index_admin']);
         route::get('/user', [LogActivityUsersController::class, 'index']);
         route::get('/crud', [CrudController::class, 'index']);
+        route::post('/register', [LogActivityUsersController::class, 'prosesregister'])->name('prosesregister');
+        route::patch('/register-update/{email}{dd}/update', [LogActivityUsersController::class, 'register_update']);
+        route::get('/akun/{email}{dd}/delete', [LogActivityUsersController::class, 'destroy']);
+        route::get('/akun/{email}{dd}/show', [LogActivityUsersController::class, 'show']);
+        route::get('/konversi', [DashboardController::class, 'konversi']);
+        route::post('/stringkonversi', [DashboardController::class, 'stringkonversi']);
+        route::get('/konversi/{id}{dd}/delete', [DashboardController::class, 'destroy']);
     });
 });
 Route::group(['middleware' => ['auth','CheckLevel:user']], function () {

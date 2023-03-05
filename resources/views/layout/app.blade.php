@@ -62,7 +62,6 @@
                 <li class="nav-item">
                     @auth
                         <form action="{{ url('out') }}" method="get">
-                            @csrf
                             <input type="hidden" name="email" value="{{ Auth()->user()->email }}">
                             <button type="submit" class="btn" onclick="javascript: return confirm('Logout ?')"><i
                                     class="fas fa-power-off"></i></button>
@@ -103,17 +102,7 @@
                 </div>
 
                 <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Sidebar -->
                 @yield('sidebar')
@@ -126,7 +115,13 @@
 
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong> <b>Admin</b> </strong>
+            <strong class="brand-text"> <b>
+                    @if (Auth()->user()->level == 'admin')
+                        Admin
+                    @else
+                        User
+                    @endif
+                </b></strong>
             <div class="float-right d-none d-sm-inline-block">
                 <strong><b>{{ date('Y') }}</b></strong>
             </div>
@@ -184,6 +179,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.0/sweetalert2.js"
         integrity="sha512-hkX8q/TwDrorur7RGdcWXQ10ercOAcOpG1g0mqlypS+BYquoVTs05PDdkLzQ2JQckx4m3OnIKMKYahD/mFHu9w=="
         crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/public.js') }}"></script>
+
 
 </body>
 

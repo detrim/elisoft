@@ -12,9 +12,10 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('cruds', function (Blueprint $table) {
+        Schema::create('bilangans', function (Blueprint $table) {
             $table->id();
-
+            $table->string('angka');
+            $table->text('text');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('cruds');
+        Schema::dropIfExists('bilangans');
     }
 };

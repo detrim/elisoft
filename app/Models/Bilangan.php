@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Crud extends Model
+class Bilangan extends Model
 {
     use HasFactory;
+    protected $table = 'bilangans';
+    protected $fillable = [
+        'angka',
+        'text',
+    ];
 }
